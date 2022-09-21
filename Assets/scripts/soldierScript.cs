@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class soldierScript : MonoBehaviour
 {
-    public Transform target; 
-    public Animation anim;   
+    [SerializeField]private Transform target; 
+    [SerializeField]private Animator anim;
+    int healthZombie = 100;
+    
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        anim.Play("idle");
     }
-    void track(){
+    public void shoot(int dmg){
+        var x = GameObject.FindWithTag("Zombie");
         float distance = Vector3.Distance(target.position, transform.position);
-        Debug.Log(distance);
-        while(distance < 15){
+        if(distance < 15){
             transform.LookAt(target);
-            anim.Play("demo_combat_shoot");
+            anim.Play("shoot");
+            healthZombie = healthZombie - dmg;
+            if(healthZombie <= 0){
+                Destroy(x);
+            }
+        }
+        else{
+            transform.LookAt(Vector3.back);
+            anim.Play("idle");
         }
     }
     // Update is called once per frame
     void Update()
     {
-        track();
+        shoot(20);
     }
 }
