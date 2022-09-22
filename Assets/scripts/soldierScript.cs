@@ -10,28 +10,34 @@ public class soldierScript : MonoBehaviour
     
     void Start()
     {
+        StartCoroutine(test());
         anim = GetComponent<Animator>();
         anim.Play("idle");
     }
-    public void shoot(int dmg){
+    public void dmg(int dmg){
         var x = GameObject.FindWithTag("Zombie");
+        healthZombie = healthZombie - dmg;
+        anim.Play("shoot");
+        if(healthZombie <= 0){
+            Destroy(x);
+        }
+    }
+    public void shoot(){
         float distance = Vector3.Distance(target.position, transform.position);
-        if(distance < 15){
+        if(distance < 10){
             transform.LookAt(target);
-            anim.Play("shoot");
-            healthZombie = healthZombie - dmg;
-            if(healthZombie <= 0){
-                Destroy(x);
-            }
         }
         else{
-            transform.LookAt(Vector3.back);
             anim.Play("idle");
         }
     }
-    // Update is called once per frame
+    IEnumerator test(){
+        shoot();
+        yield return new WaitForSeconds(1);
+        dmg(20);
+    }
     void Update()
     {
-        shoot(20);
+        
     }
 }
