@@ -16,7 +16,7 @@ public class moveTarget : MonoBehaviour
     {
         for (int i = 0; i <= targets.Length; i++)
         {
-            var step =  1 * Time.deltaTime;
+            var step =  1.5f * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targets[x].position, step);
             if (Vector3.Distance(transform.position, targets[x].position) < 2)
             {

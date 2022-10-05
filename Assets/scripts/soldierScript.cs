@@ -4,35 +4,46 @@ using UnityEngine;
 
 public class soldierScript : MonoBehaviour
 {
-    [SerializeField]private GameObject target;
-    [SerializeField]private Animator anim;
-    [SerializeField]public GameObject pow;
+    public Transform target;
+    public GameObject pow;
+    private Animator anim;
+    public string targetTag = "zombie";
+    public float range = 20f;
 
-    int healthZombie = 100;
-     public void dmg(){
-        healthZombie = healthZombie - 1;
-        if(healthZombie <= 0){
-            Destroy(target);
-            pow.SetActive(false);
-        }
-    }
-    public void track(){
-        var y = target.transform;
-        float distance = Vector3.Distance(y.position, transform.position);
-        if(distance < 13){
-            transform.LookAt(y);
-            anim.Play("shoot");
-            pow.SetActive(true);
-            InvokeRepeating("dmg", 4f, 2f);
-        }
-    }
+   
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.Play("idle");
+        InvokeRepeating("track", 0f, 0.5f);
     }
     void Update()
     {
-        track();
+        if(target == null){
+            return;
+        }
+        Vector3 direction = target.position - transform.position;
+        Quaternion look = Quaternion.LookRotation(direction);
+        Vector3 rot = look.eulerAngles;
+        transform.rotation = look;
+        Debug.DrawRay(transform.position, transform.forward * 15, Color.green);
+    }
+     void track(){
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag); 
+        float minDist = Mathf.Infinity;
+        GameObject cloDist = null;
+        foreach(GameObject enemy in targets){
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if(distance < minDist){
+                minDist = distance;
+                cloDist = enemy;
+            }
+        }
+        if (cloDist != null && minDist <= range){
+            target = cloDist.transform;
+        }
+        else{
+            target = null;
+        }
     }
 }
