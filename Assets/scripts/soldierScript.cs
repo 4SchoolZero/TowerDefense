@@ -14,6 +14,7 @@ public class soldierScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        
         anim.Play("idle");
         InvokeRepeating("track", 0f, 0.5f);
     }
@@ -41,9 +42,14 @@ public class soldierScript : MonoBehaviour
         }
         if (cloDist != null && minDist <= range){
             target = cloDist.transform;
+            anim.Play("shoot");
+            pow.SetActive(true);
+            Destroy(cloDist, 2);
         }
         else{
             target = null;
+            anim.Play("idle");
+            pow.SetActive(false);
         }
     }
 }
