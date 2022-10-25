@@ -45,6 +45,7 @@ public class soldierScript : MonoBehaviour
             anim.Play("shoot");
             pow.SetActive(true);
             Destroy(cloDist, 2);
+            
         }
         else{
             target = null;
