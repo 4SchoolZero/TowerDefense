@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class powerUps : MonoBehaviour
 {
+    public GameObject muzzle;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,9 @@ public class powerUps : MonoBehaviour
     }
     public void turret(){
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Zombie"); 
+        muzzle.SetActive(true);
         for (var i = 0; i < targets.Length; i++) {
-            Destroy(targets[i], 3);
+            Destroy(targets[i].gameObject, 3);
         }
     }
     public void nuke(){
