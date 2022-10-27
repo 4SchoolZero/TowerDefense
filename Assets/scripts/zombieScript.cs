@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class zombieScript : MonoBehaviour
 {
     public Transform[] targets;
+    public waveScript wScript;
     private Animator anim;
     private int x = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
     // Update is called once per frame
     void Update()
     {
@@ -20,12 +17,12 @@ public class zombieScript : MonoBehaviour
     void walkTo(){
         for (int i = 0; i <= targets.Length; i++)
         {
-            var step =  1.5f * Time.deltaTime;
+            var step =  wScript.speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targets[x].position, step);
-            if (Vector3.Distance(transform.position, targets[x].position) < 2)
+            if (Vector3.Distance(transform.position, targets[x].position) < 0.5f)
             {
                 x++;
-                Debug.Log(x);
+                SceneManager.LoadScene (sceneName:"gameOver");
             }
             if(x >= targets.Length) x = 0;
         }

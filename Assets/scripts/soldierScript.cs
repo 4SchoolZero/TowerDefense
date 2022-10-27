@@ -17,6 +17,7 @@ public class soldierScript : MonoBehaviour
         
         anim.Play("idle");
         InvokeRepeating("track", 0f, 0.5f);
+        
     }
     void Update()
     {
@@ -45,7 +46,6 @@ public class soldierScript : MonoBehaviour
             anim.Play("shoot");
             pow.SetActive(true);
             Destroy(cloDist, 2);
-            
         }
         else{
             target = null;
