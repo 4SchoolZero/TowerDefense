@@ -17,9 +17,9 @@ public class placeScript : MonoBehaviour
     public Toggle mainR;
     public void placeBtn(string x = ""){
         if(left.isOn){
-            if(sklScript.points >= 200){
+            if(sklScript.points >= 190){
                 towerLeft.SetActive(true);
-                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 200);
+                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 190);
             }
             else{
                 Debug.Log("not enough money");
@@ -29,9 +29,9 @@ public class placeScript : MonoBehaviour
             towerLeft.SetActive(false);
         }
         if(right.isOn){
-            if(sklScript.points >= 200){
+            if(sklScript.points >= 190){
                 towerRight.SetActive(true);
-                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 200);
+                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 190);
             }
             else{
                 Debug.Log("not enough money");
@@ -41,9 +41,9 @@ public class placeScript : MonoBehaviour
             towerRight.SetActive(false);
         }
         if(mainL.isOn){
-            if(sklScript.points >= 200){
+            if(sklScript.points >= 190){
                 towerMainL.SetActive(true);
-                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 200);
+                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 190);
             }
             else{
                 Debug.Log("not enough money");
@@ -53,9 +53,9 @@ public class placeScript : MonoBehaviour
             towerMainL.SetActive(false);
         }
         if(mainR.isOn){
-            if(sklScript.points >= 200){
+            if(sklScript.points >= 190){
                 towerMainR.SetActive(true);
-                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 200);
+                skullController.GetComponent<skullScript>().skullCount(sklScript.points - 190);
             }
             else{
                 Debug.Log("not enough money");

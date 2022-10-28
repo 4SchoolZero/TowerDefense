@@ -44,11 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fcc3da5bb62364fa95d2803b5d6c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zScript: {fileID: 0}
   sklScript: {fileID: 0}
   cloneThis: {fileID: 8974173052321760521, guid: 9c370c6887ba5be488d0d450f29ec905,
     type: 3}
   skullController: {fileID: 0}
   waveCount: {fileID: 0}
-  speed: 2
+  speed: 1
   startWave: 5

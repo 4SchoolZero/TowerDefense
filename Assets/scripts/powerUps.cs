@@ -5,6 +5,7 @@ using UnityEngine;
 public class powerUps : MonoBehaviour
 {
     public skullScript sklScript;
+    public ParticleSystem explotion;
     public GameObject skullController;
     public GameObject muzzle;
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class powerUps : MonoBehaviour
     public void nuke(){
         if(sklScript.points >= 500){
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Zombie"); 
+            explotion.Play();
             for (var i = 0; i < targets.Length; i++) {
                 Destroy(targets[i]);
             }

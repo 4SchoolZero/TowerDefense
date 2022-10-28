@@ -8,8 +8,9 @@ public class waveScript : MonoBehaviour
     public skullScript sklScript;
     public GameObject cloneThis;
     public GameObject skullController;
+    public powerUps pwerUps;
     public Text waveCount;
-    public int speed = 0;
+    public int speed;
     public int startWave = 6;
     bool oneTime;
     
@@ -27,12 +28,14 @@ public class waveScript : MonoBehaviour
     void waveCalc(){
         int x = 0;
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Zombie");
-        if(targets.Length <= 1){
+        if(targets.Length <= 0){
             x++;
             waveCount.text = "Wave: " + x;
             startWave++;
             wave(startWave);
+            this.speed++;
             oneTime = false;
+            pwerUps.muzzle.SetActive(false);
         }
         else {
             waveCount.text = "Zombies Left: " + targets.Length;
@@ -44,7 +47,6 @@ public class waveScript : MonoBehaviour
     }
     
     void wave(int waveSize){
-        speed++;
         for (int i = 0; i <= waveSize; i++)
         {
             GameObject Zclone = Instantiate(cloneThis, new Vector3(37.5f + i, 6.5f, 0), cloneThis.transform.rotation);

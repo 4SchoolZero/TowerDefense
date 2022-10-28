@@ -18,6 +18,7 @@ public class zombieScript : MonoBehaviour
         for (int i = 0; i <= targets.Length; i++)
         {
             var step =  wScript.speed * Time.deltaTime;
+            Debug.Log(wScript.speed);
             transform.position = Vector3.MoveTowards(transform.position, targets[x].position, step);
             if (Vector3.Distance(transform.position, targets[x].position) < 0.5f)
             {
